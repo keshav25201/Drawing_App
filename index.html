@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Drawing App</title>
+</head>
+<body>
+    <div class="field">
+        <canvas id="canvas">    </canvas>
+           
+            <div class="tools">
+                <button id="undo" onclick="Undo()">Undo</button>
+                <button id="clear"onclick="Clear()">Clear</button>
+                 <div class="color-field" onClick="changeColor(this)" style="background: red;"></div>
+                <div class="color-field" onClick="changeColor(this)" style="background: green;"></div>
+                <div class="color-field"onClick="changeColor(this)" style="background: blue;"></div>
+                <div class="color-field"onClick="changeColor(this)" style="background: yellow;"></div>
+                <input type="color" oninput="draw_color = this.value" class="color-picker">
+                <input type="range" oninput="draw_width = this.value" min="0.1" max="10" class="pen-range">
+            </div>
+    
+    </div>
+    <script src="main.js"></script>
+</body>
+</html>
