@@ -4,12 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
+    <script src="http://localhost:4000/socket.io/socket.io.js"></script>
     <title>Drawing App</title>
 </head>
 <body>
     <div class="field">
-        <canvas id="canvas">    </canvas>
-           
+        <canvas id="canvas" width="1400" height="600">    </canvas>
+
             <div class="tools">
                 <button id="undo" onclick="Undo()">Undo</button>
                 <button id="clear"onclick="Clear()">Clear</button>
@@ -20,7 +21,7 @@
                 <input type="color" oninput="draw_color = this.value" class="color-picker">
                 <input type="range" oninput="draw_width = this.value" min="0.1" max="10" class="pen-range">
             </div>
-    
+
     </div>
     <script src="main.js"></script>
 </body>
