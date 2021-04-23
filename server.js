@@ -2,17 +2,40 @@ var express = require('express');
 var app = require('express')();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
-app.use(express.static(__dirname));
+const { v4: uuidv4 } = require('uuid');
+const path = require('path')
+
+//middleware
+app.use(express.static('public'))
+app.set('view engine' ,'ejs')
+app.set('views',__dirname + '/public')
+
+
+// const coll = new Map();
+
+//routes
 app.get('/',(req,res) => {
-    res.sendFile('/index.html');
+  res.sendFile(__dirname + '/public/homepage.html');
 })
+
+app.get('/getcode',(req,res) => {
+  let code = uuidv4();
+  res.json({code})
+})
+app.get('/draw/:code',(req,res) => {
+    res.render('draw',{roomCode:req.params.code})
+})
+
 io.on('connection', function(socket){
-  console.log('a user connected');
+  socket.on("join",(roomCode) => {
+    socket.room = roomCode;
+    socket.join(roomCode);
+  })
   socket.on("start",(obj) => {
-    socket.broadcast.emit("start",obj)
+    socket.broadcast.to(socket.room).emit("start",obj)
   })
   socket.on("drawing",(obj) => {
-    socket.broadcast.emit("drawing",obj)
+    socket.broadcast.to(socket.room).emit("drawing",obj)
   })
 });
 

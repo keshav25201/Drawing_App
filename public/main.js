@@ -5,13 +5,10 @@ const canvas = document.getElementById("canvas");
 /** @type {CanvasRenderingContext2D} */
 let ctx = canvas.getContext("2d");
 let draw_color = "black";
-let draw_width = "2";
+let draw_width = "4";
 let is_drawing  = false;
 let path = [];
 let index = -1;
-
-
-
 
 
 canvas.addEventListener("mousedown",start,);
@@ -54,7 +51,6 @@ function stop(event){
         index+=1;
     }
 
-    // console.log(path)
 }
 
 function changeColor(element){
@@ -74,6 +70,8 @@ function Undo(){
 }
 
 var socket = io();
+
+socket.emit("join",roomCode)
 socket.on("start",(obj) => {
   ctx.beginPath();
   ctx.moveTo(obj.x,obj.y);
