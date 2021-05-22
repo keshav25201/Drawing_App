@@ -5,16 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="/styles.css">
     <script src="/socket.io/socket.io.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
     <title>Drawing App</title>
 
 </head>
 <body>
+  <h1>share url to collaborate</h1>
     <div class="field">
         <canvas id="canvas" width="1400" height="600">    </canvas>
 
             <div class="tools">
-                <button id="undo" onclick="Undo()">Undo</button>
-                <button id="clear"onclick="Clear()">Clear</button>
+                <i class="fas fa-eraser fa-2x" onclick="Erase()"></i>
+                <i class="fas fa-undo fa-2x" onclick="Undo()"></i>
+                <i class="fas fa-file fa-2x" onclick="Clear()"></i>
                  <div class="color-field" onClick="changeColor(this)" style="background: red;"></div>
                 <div class="color-field" onClick="changeColor(this)" style="background: green;"></div>
                 <div class="color-field"onClick="changeColor(this)" style="background: blue;"></div>
@@ -27,7 +30,7 @@
     <script type="text/javascript">
       var roomCode = <%-JSON.stringify(roomCode)%>
     </script>
-  <script src="/main.js" charset="utf-8"></script>
+  <script src="/draw.js" charset="utf-8"></script>
 
 </body>
 </html>

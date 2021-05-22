@@ -1,9 +1,10 @@
-
 const canvas = document.getElementById("canvas");
-// canvas.width = window.innerWidth-40;
-// canvas.height = 600;
+canvas.width = window.innerWidth-40;
+canvas.height = window.innerHeight - 200;
 /** @type {CanvasRenderingContext2D} */
 let ctx = canvas.getContext("2d");
+ctx.fillStyle = "white";
+ctx.fillRect(0, 0, canvas.width, canvas.height);
 let draw_color = "black";
 let draw_width = "4";
 let is_drawing  = false;
@@ -69,6 +70,10 @@ function Undo(){
     }
 }
 
+function Erase(){
+    draw_color = 'white';
+}
+
 var socket = io();
 
 socket.emit("join",roomCode)
@@ -85,3 +90,4 @@ socket.on("drawing",(obj) => {
   ctx.lineJoin = "round";
   ctx.stroke();
 })
+
